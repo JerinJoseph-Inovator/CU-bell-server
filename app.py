@@ -1,17 +1,17 @@
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import pandas as pd  # For handling Excel files
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from datetime import datetime
 
-# GPIO.setmode(GPIO.BCM)  # Use BCM numbering
-# GPIO.setup(14, GPIO.OUT)  # Set pin 14 as output for relay
-# def relay_trigger():
-#     # Trigger the relay for 5 seconds
-#     GPIO.output(14, GPIO.HIGH)  # Turn the relay on
-#     time.sleep(5)  # Keep the relay on for 5 seconds
-#     GPIO.output(14, GPIO.LOW)  # Turn the relay off
+GPIO.setmode(GPIO.BCM)  # Use BCM numbering
+GPIO.setup(14, GPIO.OUT)  # Set pin 14 as output for relay
+def relay_trigger():
+    # Trigger the relay for 5 seconds
+    GPIO.output(14, GPIO.HIGH)  # Turn the relay on
+    time.sleep(5)  # Keep the relay on for 5 seconds
+    GPIO.output(14, GPIO.LOW)  # Turn the relay off
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -164,7 +164,7 @@ def display_data():
                 "slot_times": row["Timings"]
             }
             data_json.append(event)
-        print(data_json)
+        # print(data_json)
 
         # Return the JSON response
         return jsonify(data_json), 200
