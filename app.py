@@ -6,12 +6,12 @@ from flask_cors import CORS
 from datetime import datetime
 
 GPIO.setmode(GPIO.BCM)  # Use BCM numbering
-GPIO.setup(14, GPIO.OUT)  # Set pin 14 as output for relay
+GPIO.setup(12, GPIO.OUT)  # Set pin 14 as output for relay
 def relay_trigger():
     # Trigger the relay for 5 seconds
-    GPIO.output(14, GPIO.HIGH)  # Turn the relay on
+    GPIO.output(12, GPIO.HIGH)  # Turn the relay on
     time.sleep(5)  # Keep the relay on for 5 seconds
-    GPIO.output(14, GPIO.LOW)  # Turn the relay off
+    GPIO.output(12, GPIO.LOW)  # Turn the relay off
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -184,11 +184,15 @@ def handle_schedule():
     if isinstance(data, dict) and len(data) == 1 and isinstance(list(data.values())[0], int):
         minutes = list(data.values())[0]
         
-        # Format the data to minutes (no need for complex date parsing)
-        formatted_data = f"minutes,{minutes}"
+        # Format the data to Seconds  (no need for complex date parsing)
+        time_in_seconds = minutes * 60
+
+        # Use a background thread to handle the delay
+        import threading
+        threading.Thread(target=lambda: (time.sleep(time_in_seconds), relay_trigger())).start()
 
         # Log the formatted data
-        log_to_file('input.txt', formatted_data)
+        # log_to_file('input.txt', formatted_data)
 
         return jsonify({"status": "success", "message": "Schedule data received"}), 200
     else:
