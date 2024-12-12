@@ -101,9 +101,9 @@ def write_to_csv(event_dict, csv_file):
         print(f"Error writing to CSV file {csv_file}: {e}")
 
 
-input_file = "/home/pi/Desktop/server/initial.txt"
+input_file = "/home/pi/Desktop/server/input.txt"
 output_file = "/home/pi/Desktop/server/final.txt"
-csv_file = "/home/pi/Desktop/server/ok.csv"  # Saving in CSV instead of Excel
+csv_file = "/home/pi/Desktop/server/bell_events.csv"  # Saving in CSV instead of Excel
 
 event_dict = read_and_process_events(input_file)
 write_latest_events(event_dict, output_file)
