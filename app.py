@@ -1,12 +1,17 @@
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import time
 import pandas as pd  # For handling Excel files
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from datetime import datetime
 
-GPIO.setmode(GPIO.BCM)  # Use BCM numbering
-GPIO.setup(14, GPIO.OUT)  # Set pin 14 as output for relay
+# GPIO.setmode(GPIO.BCM)  # Use BCM numbering
+# GPIO.setup(14, GPIO.OUT)  # Set pin 14 as output for relay
+# def relay_trigger():
+#     # Trigger the relay for 5 seconds
+#     GPIO.output(14, GPIO.HIGH)  # Turn the relay on
+#     time.sleep(5)  # Keep the relay on for 5 seconds
+#     GPIO.output(14, GPIO.LOW)  # Turn the relay off
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -124,10 +129,7 @@ def handle_emergency():
     else:
         log_to_file('input.txt', str(data))
 
-    # Trigger the relay for 5 seconds
-    GPIO.output(14, GPIO.HIGH)  # Turn the relay on
-    time.sleep(5)  # Keep the relay on for 5 seconds
-    GPIO.output(14, GPIO.LOW)  # Turn the relay off
+    relay_trigger()
 
     return jsonify({"status": "success", "message": "Emergency signal received"}), 200
 
@@ -141,7 +143,7 @@ def display_data():
         df = pd.read_csv(file_path)
 
         # Check if required columns exist
-        required_columns = ["Type", "Date", "Timings for Bell"]
+        required_columns = ["Type", "Date", "Timings"]
         for column in required_columns:
             if column not in df.columns:
                 return jsonify({"status": "error", "message": f"Missing column: {column}"}), 500
@@ -159,9 +161,10 @@ def display_data():
             event = {
                 "type": row["Type"],
                 "date": date_value,
-                "slot_times": row["Timings for Bell"]
+                "slot_times": row["Timings"]
             }
             data_json.append(event)
+        print(data_json)
 
         # Return the JSON response
         return jsonify(data_json), 200
