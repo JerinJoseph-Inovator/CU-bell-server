@@ -143,7 +143,7 @@ def display_data():
         df = pd.read_csv(file_path)
 
         # Check if required columns exist
-        required_columns = ["Type", "Date", "Timings"]
+        required_columns = ["Type", "Date", "Timings for bell"]
         for column in required_columns:
             if column not in df.columns:
                 return jsonify({"status": "error", "message": f"Missing column: {column}"}), 500
