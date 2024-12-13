@@ -4,7 +4,7 @@ import time
 from datetime import datetime, timedelta
 from openpyxl import Workbook, load_workbook
 import os
-relay_pin=18
+relay_pin=12
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(relay_pin,GPIO.OUT)
 # Function to simulate ringing the bell
@@ -16,13 +16,13 @@ def ring_bell(duration):
     GPIO.output(relay_pin,GPIO.LOW)
 
 saturday_timings = [
-    "08:55", "09:00", "09:55", "10:00", "10:55", "11:00",
-    "11:55", "12:00", "12:55"
+    "08:55:00", "09:00:00", "09:55:00", "10:00:00", "10:55:00", "11:00:00",
+    "11:55:00", "12:00:00", "12:55:00"
 ]
 weekday_timings = [
-    "08:55", "09:00", "09:55", "10:00", "10:55", "11:00",
-    "11:55", "12:00", "12:55", "13:00", "13:55", "14:00",
-    "14:55", "15:00", "15:55"
+    "08:55:00", "09:00:00", "09:55:00", "10:00:00", "10:55:00", "11:00:00",
+    "11:55:00", "12:00:00", "12:55:00", "13:00:00", "13:55:00", "14:00:00",
+    "14:55:00", "15:00:00", "15:55:00"
 ]
 weekdays=[
     "Monday","Tuesday","Wednesday","Thursday","Friday"
