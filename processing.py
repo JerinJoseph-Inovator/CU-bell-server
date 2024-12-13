@@ -78,7 +78,7 @@ def write_to_csv(event_dict, csv_file):
     try:
         with open(csv_file, 'w', newline='') as file:
             csv_writer = csv.writer(file)
-            csv_writer.writerow(["Type", "Date", "Timings for bell"])  # CSV header
+            csv_writer.writerow(["Type", "Date", "Timings"])  # CSV header
 
             mid_offsets = [timedelta(minutes=15), timedelta(minutes=30), timedelta(hours=2, minutes=15), timedelta(hours=2, minutes=30)]
             end_offsets = [timedelta(minutes=15), timedelta(minutes=30), timedelta(hours=3), timedelta(hours=3, minutes=30)]
