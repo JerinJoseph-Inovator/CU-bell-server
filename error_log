@@ -1,0 +1,4 @@
+Error parsing line: {'mode': '1'}
+Error: invalid literal for int() with base 10: "{'mode': '1'}"
+Error parsing line: {'mode': '1'}
+Error: invalid literal for int() with base 10: "{'mode': '1'}"

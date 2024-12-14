@@ -124,10 +124,10 @@ def handle_emergency():
     data = request.json
     print('Emergency Signal Received:', data)
     formatted_data = format_data(data)
-    if formatted_data:
-        log_to_file('input.txt', formatted_data)
-    else:
-        log_to_file('input.txt', str(data))
+   # if formatted_data:
+   #    log_to_file('input.txt', formatted_data)
+   # else:
+   #    log_to_file('input.txt', str(data))
 
     relay_trigger()
 
