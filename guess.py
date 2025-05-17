@@ -20,6 +20,8 @@ LCD_ROWS = 2
 ROW = [board.D5, board.D6, board.D13, board.D19]  # GPIO5, GPIO6, GPIO13, GPIO19 (Pins 29, 31, 33, 35)
 COL = [board.D12, board.D16, board.D20, board.D21]  # GPIO12, GPIO16, GPIO20, GPIO21 (Pins 32, 36, 38, 40)
 
+
+
 # === System Variables ===
 schedule_list = []  # Stores scheduled times
 temp_time = None    # Temporarily holds entered time
@@ -27,12 +29,10 @@ lcd_updating = True # Controls whether the LCD updates in real-time
 last_lcd_message = ""  # Variable to track the last LCD message
 show_rtc = True  # Controls if real-time clock is shown
 last_input_time = time.time()  # Track the last input time to handle inactivity
-inactivity_timeout = 30  # Time in seconds before reverting to RTC
-
+ 
 GPIO.setmode(GPIO.BCM)
 relay_pin=4
 GPIO.setup(relay_pin,GPIO.OUT)
-
 # === GPIO Setup ===
 lcd_rs = digitalio.DigitalInOut(LCD_RS)
 lcd_rs.direction = digitalio.Direction.OUTPUT
@@ -112,9 +112,10 @@ def real_time_clock():
         time.sleep(1)
 
 def ring_bell():
-    GPIO.output(relay_pin, GPIO.HIGH)
+    GPIO.output(relay_pin,GPIO.HIGH)
     time.sleep(5)
-    GPIO.output(relay_pin, GPIO.LOW)
+    GPIO.output(relay_pin,GPIO.LOW)
+
 
 def check_schedule():
     """
@@ -123,6 +124,7 @@ def check_schedule():
     """
     global schedule_list
     while lcd_updating:
+        # Get current time with seconds
         current_time = datetime.now().strftime("%H:%M:%S")
         
         for scheduled_time in schedule_list[:]:  # Iterate over a copy of the list
@@ -156,6 +158,7 @@ def handle_mode_selection():
             time.sleep(2)
             show_rtc = True  # Show real-time clock again after exiting modes
             break
+        
 
 def enter_time_mode():
     """
@@ -175,6 +178,7 @@ def enter_time_mode():
             input_time = input_time[:-1]
             update_lcd(f"Time {input_time} min")
             time.sleep(0.5)
+            
         elif key.isdigit():  # Append digits to input
             input_time += key
             update_lcd(f"Time: {input_time} min")
@@ -223,11 +227,9 @@ def main():
 
     try:
         while True:
+            # Check if 30 seconds have passed since last keypress
             current_time = time.time()
 
-            # Check inactivity timeout
-            if current_time - last_input_time > inactivity_timeout:
-                show_rtc = True  # Reset to RTC after inactivity timeout
 
             # Show RTC or handle keypresses
             if show_rtc:
@@ -244,6 +246,7 @@ def main():
                 elif key == 'D':
                     ring_bell()
                     break
+                 
 
             time.sleep(0.1)  # Prevent busy-wait loop
     except KeyboardInterrupt:
@@ -252,11 +255,11 @@ def main():
         # Cleanup and stop LCD updates
         lcd_updating = False
         lcd.clear()
-        GPIO.cleanup()
         print("Program Exiting")
 
 # Run the main function
-if __name__ == "__main__":
+if __name__=="__main__":
     while True:
         main()
         time.sleep(2)
+

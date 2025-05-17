@@ -81,8 +81,8 @@ def main():
                 csv_writer = csv.writer(file)
                 csv_writer.writerow(["Type", "Date", "Timings"])  # CSV header
 
-                mid_offsets = [timedelta(minutes=15), timedelta(minutes=30), timedelta(hours=2, minutes=15), timedelta(hours=2, minutes=30)]
-                end_offsets = [timedelta(minutes=15), timedelta(minutes=30), timedelta(hours=3), timedelta(hours=3, minutes=30)]
+                mid_offsets = [timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=2, minutes=5), timedelta(hours=2, minutes=15)]
+                end_offsets = [timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=3, minutes=5), timedelta(hours=3, minutes=15)]
 
                 for date, events in sorted(event_dict.items()):
                     date_str = date.strftime('%d-%m-%Y')

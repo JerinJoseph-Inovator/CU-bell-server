@@ -1,0 +1,45 @@
+  File "/home/pi/Desktop/server/processing.py", line 85
+    end_offsets = [timedelta(minutes=0), timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=2, minutes=45),, timedelta(hours=3, minutes=15)]
+                                                                                                                     ^
+SyntaxError: invalid syntax
+  File "/home/pi/Desktop/server/processing.py", line 85
+    end_offsets = [timedelta(minutes=0), timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=2, minutes=45),, timedelta(hours=3, minutes=15)]
+                                                                                                                     ^
+SyntaxError: invalid syntax
+  File "/home/pi/Desktop/server/processing.py", line 85
+    end_offsets = [timedelta(minutes=0), timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=2, minutes=45),, timedelta(hours=3, minutes=15)]
+                                                                                                                     ^
+SyntaxError: invalid syntax
+  File "/home/pi/Desktop/server/processing.py", line 85
+    end_offsets = [timedelta(minutes=0), timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=2, minutes=45),, timedelta(hours=3, minutes=15)]
+                                                                                                                     ^
+SyntaxError: invalid syntax
+  File "/home/pi/Desktop/server/processing.py", line 85
+    end_offsets = [timedelta(minutes=0), timedelta(minutes=5), timedelta(minutes=15), timedelta(hours=2, minutes=45),, timedelta(hours=3, minutes=15)]
+                                                                                                                     ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "/home/pi/Desktop/server/processing.py", line 112, in <module>
+    event_dict = read_and_process_events(input_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'read_and_process_events' is not defined
+Traceback (most recent call last):
+  File "/home/pi/Desktop/server/processing.py", line 112, in <module>
+    event_dict = read_and_process_events(input_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'read_and_process_events' is not defined
+Traceback (most recent call last):
+  File "/home/pi/Desktop/server/processing.py", line 112, in <module>
+    event_dict = read_and_process_events(input_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'read_and_process_events' is not defined
+Traceback (most recent call last):
+  File "/home/pi/Desktop/server/processing.py", line 112, in <module>
+    event_dict = read_and_process_events(input_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'read_and_process_events' is not defined
+Traceback (most recent call last):
+  File "/home/pi/Desktop/server/processing.py", line 112, in <module>
+    event_dict = read_and_process_events(input_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'read_and_process_events' is not defined

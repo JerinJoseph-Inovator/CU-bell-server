@@ -6,12 +6,12 @@ from flask_cors import CORS
 from datetime import datetime
 
 GPIO.setmode(GPIO.BCM)  # Use BCM numbering
-GPIO.setup(12, GPIO.OUT)  # Set pin 14 as output for relay
+GPIO.setup(4, GPIO.OUT)  # Set pin 14 as output for relay
 def relay_trigger():
     # Trigger the relay for 5 seconds
-    GPIO.output(12, GPIO.HIGH)  # Turn the relay on
+    GPIO.output(4, GPIO.HIGH)  # Turn the relay on
     time.sleep(5)  # Keep the relay on for 5 seconds
-    GPIO.output(12, GPIO.LOW)  # Turn the relay off
+    GPIO.output(4, GPIO.LOW)  # Turn the relay off
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
